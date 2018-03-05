@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    h1= title
+        legend Welcome to #{title}
+            div=users
+            mixin users(users)
+                fieldset
+                    each user in users
+                        div=user.sid				
+                        div=user.sname					
+                        a(href='/delete/#{user.sid}', class='btn btn-primary') Delete
+                        a(href='/update/#{user.sid}', class='btn btn-primary') Update
+             p#pp 点击我
+             a(href='/create', class='btn btn-primary') Add a User
+
+            - users = user
+            mixin users(users)
+    script(type='text/javascript').
+        $('#pp').click(function (e) {
+                        $.ajax({
+                                url: '/ajax',
+                                type: 'get',
+                                dataType: 'json',
+                                success:function(data){
+                                dataval=eval(data);
+                                $.each(dataval,function(i,v){
+                                    console.log(v.sname);
+                                })
+                                },
+                                error:function(data){
+                                    alert('error');
+                                }
+                            });
+                  });

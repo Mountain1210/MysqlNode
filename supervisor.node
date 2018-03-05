@@ -1,0 +1,28 @@
+supervisor 
+在开发或调试Node.js应用程序的时候，当你修改js文件后，总是要按下CTRL+C终止程序，然后再重新启动，即使是修改一点小小的参数，也总是要不断地重复这几个很烦人的操作。有没有办法做到当文件修改之后，Node.js自动重新启动（或重新加载文件）以节省时间呢？一开始我是想到用grunt的watch模块来监控文件变化，但后来在网上一查，原来我们想到的，别人早已想到，并且已经做得很好。Node Supervisor正是这样一个可以实现这种需求的Node.js模块。 
+根据Github上的说明，Node Supervisor原本是用于服务器上Node.js应用崩溃的时候，自己重新启动。当然它也可以监控你的项目的js（或CoffeeScript）文件变化，进而重启来方便我们调试应用程序。 
+安装方法（以全局模块安装）： 
+复制代码代码如下:
+
+npm install supervisor -g 
+假设你的Node.js程序主入口是app.js，那么只需要执行以下命令，即可开始监控文件变化。 
+复制代码代码如下:
+
+supervisor app.js 
+Supervisor还支持多种参数，列举如下： 
+复制代码代码如下:
+
+//要监控的文件夹或js文件，默认为’.’ 
+-w|–watch 
+//要忽略监控的文件夹或js文件 
+-i|–ignore 
+//监控文件变化的时间间隔（周期），默认为Node.js内置的时间 
+-p|–poll-interval 
+//要监控的文件扩展名，默认为’node|js’ 
+-e|–extensions 
+//要执行的主应用程序，默认为’node’ 
+-x|–exec 
+//开启debug模式（用–debug flag来启动node） 
+–debug 
+//安静模式，不显示DEBUG信息 
+-q|–quiet

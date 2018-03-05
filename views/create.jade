@@ -1,0 +1,37 @@
+extends layout
+
+block content
+	h1=title
+	-	userVar = user
+	-	if(userVar)
+		form(method='post',action='/update')
+			fieldset
+				legend=title
+				div.clearfix
+					label LoginName
+					div.input
+						input(name='sid',class='xlarge',value=user.sid)
+					label Name
+					div.input
+						input(name='sname',class='xlarge',value=user.sname)
+				div.actions
+					input(type='submit',value='Save',class='btn primary')
+					button(type='reset',class='btn') Cancel
+	-	else
+		form(method='post',action='/create')
+			fieldset
+				legend=title
+				div.clearfix
+					label Id
+					div.input
+						input(name='sid',class='xlarge')
+					label LoginName
+					div.input
+						input(name='sname',class='xlarge')
+					
+				div.actions
+					input(type='submit',value='Add',class='btn primary')
+					button(type='reset',class='btn') Cancel
+						
+		
+		
